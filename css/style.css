@@ -1,0 +1,78 @@
+
+:root {
+    --dark-blue: hsl(209, 23%, 22%); /* (Dark Mode Elements) */
+    --Very-dark-blue-dm: hsl(207, 26%, 17%); /* (Dark Mode Background) */
+    --Very-dark-blue-lm: hsl(200, 15%, 8%); /* (Light Mode Text) */
+    --Dark-gray: hsl(0, 0%, 52%); /* (Light Mode Input) */
+    --Very-light-gray: hsl(0, 0%, 98%); /* (Light Mode Background) */
+    --White: hsl(0, 0%, 100%); /* (Dark Mode Text & Light Mode Elements) */
+}
+.page-wrapper {
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--Very-dark-blue-lm);
+}
+header.container {
+    padding: 2rem 0;
+    background-color: var(--White);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    z-index: 999;
+}
+header h1 {
+    font-weight: 1000;
+    font-size: 1.5rem;
+}
+header p {
+    font-weight: 1000;
+    font-size: 1rem;
+}
+.img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 1.9rem;
+    cursor: pointer;
+}
+main.container {
+    background-color: var(--Very-light-gray);
+    padding: 3rem 0;
+}
+.search-row {
+    padding: 0 0 2rem 0;
+}
+#search-bar input {
+    border: none;
+    outline: none;
+}
+#search-bar input::placeholder {
+    color: var(--Dark-gray);
+}
+#search-bar img {
+    width: 1.7rem;
+    height: 1.7rem;
+}
+#search-bar {
+    width: 150%;
+}
+#region {
+    border: none;
+    outline: none;
+}
+#search-bar, #region {
+    background-color: var(--White);
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    height: 3.5rem;
+}
+.card-row {
+    flex-wrap: wrap;
+    gap: 25px
+}
+.country-card {
+    height: 18rem;
+    min-width: 23%;
+    border: 1px solid chartreuse;
+}
