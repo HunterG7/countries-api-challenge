@@ -11,6 +11,10 @@
     font-family: 'Nunito Sans', sans-serif;
     color: var(--Very-dark-blue-lm);
 }
+
+/*///////////*/
+/* Home Page */
+/*///////////*/
 header.container {
     padding: 2rem 0;
     background-color: var(--White);
@@ -18,9 +22,10 @@ header.container {
     z-index: 999;
     height: 10vh;
 }
-header h1 {
+header a {
     font-weight: 1000;
     font-size: 1.5rem;
+    cursor: pointer;
 }
 header p {
     font-weight: 1000;
@@ -111,4 +116,40 @@ main.container {
 }
 .country-card p span {
     font-weight: 400;
+}
+.back-btn {
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    padding: .5rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--White);
+    margin: 2rem 0;
+}
+.back-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/*/////////////////////*/
+/* Single Country Page */
+/*/////////////////////*/
+.gap-5 {
+    gap: 5rem;
+}
+.country-name {
+    font-weight: 1000;
+    font-size: 1.25rem;
+}
+.country-info p {
+    font-weight: 1000;
+}
+.country-info p span {
+    font-weight: normal;
+}
+.flag {
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }

@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="page-wrapper">
+<div class="page-wrapper gap-30">
     <!-- header and mode switcher -->
     <header class="container justify-center">
         <div class="row align-center justify-space-between no-padding">
             <div class="column shrink">
-                <h1>Where in the World?</h1>
+                <a href="index.html">Where in the World?</a>
             </div>
             <!-- mode switch -->
             <div class="column shrink">
@@ -35,7 +35,20 @@
         </div>
     </header>
 
+    <!-- back button -->
+    <section class="container justify-center shrink">
+        <div class="row no-padding">
+            <div class="back-btn">
+                <img src="images/" alt="back arrow">
+                <p>Back</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- main content -->
+    <section class="container grow single-country-card"></section>
 </div>
 
+<script type="module" src="js/country.js"></script>
 </body>
 </html>

@@ -1,18 +1,19 @@
-(async()=>{
+//////////////////////
+// INDEX PAGE LOGIC //
+//////////////////////
+(async() => {
 
 	const countriesParent = document.querySelector('.card-row');
 	const searchBar = document.querySelector('#search');
 	const filterByRegion = document.querySelector('#region');
-	const countryCards = document.querySelectorAll('.country-card');
 
 	// get countries data from API
 	const testAPI = async () => {
 		try {
 			const response = await fetch('https://restcountries.com/v3.1/all');
 			const data = await response.json();
-			console.log(data);
 			return data;
-		} catch (error){
+		} catch (error) {
 			console.log(error);
 		}
 	}
@@ -21,7 +22,7 @@
 	const renderDefaultCountries = async () => {
 		let countries = await testAPI();
 		countriesParent.innerHTML = '';
-		for (let i = 0; i < 20; i++){
+		for (let i = 0; i < 20; i++) {
 			renderCountry(countries[i]);
 		}
 	}
@@ -59,6 +60,7 @@
 		}
 	});
 
+
 	// filter by region
 	filterByRegion.addEventListener('change', async () => {
 		let countries = await testAPI();
@@ -79,12 +81,11 @@
 	});
 
 	// redirect to country when country card is clicked
-	countriesParent.addEventListener('click', (e) => {
+	countriesParent.addEventListener('click', async (e) => {
 		let countryName = e.target.closest('.country-card').querySelector('h3').textContent;
 		window.location.href = `country.html?name=${countryName}`;
 	});
 
-	// render default countries on page load
+	// execute default countries on page load
 	await renderDefaultCountries();
-
 })();
