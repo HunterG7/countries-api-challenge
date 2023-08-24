@@ -17,6 +17,17 @@ const getCountryInfo = async (country) => {
 	try {
 		const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
 		const data = await response.json();
+
+		if (data[0] === undefined){
+			try {
+				const response = await fetch(`https://restcountries.com/v3.1/alpha/${country}`);
+				const data = await response.json();
+				return data;
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
 		return data;
 	} catch (error) {
 		console.log(error);
@@ -66,7 +77,6 @@ const renderCountryPage = async () => {
 	countryCard.innerHTML = '';
 	let countryData = await getCountryInfo(currentCountry);
 	countryData = countryData[0];
-	console.log(countryData);
 
 	let currencyName = getCurrency(countryData);
 	let languages = getLanguage(countryData);
@@ -105,18 +115,17 @@ const renderCountryPage = async () => {
 		</div>`;
 
 	countryCard.append(HTML);
-	borderCountryFunctionality();
+	await borderCountryFunctionality();
 }
 
 // redirect to specific country view when border country is clicked
-const borderCountryFunctionality = () => {
+const borderCountryFunctionality = async () => {
 	let borderCountriesNodes = document.querySelectorAll('.border-country');
 	borderCountriesNodes.forEach((node)=>{
-		node.addEventListener('click', ()=>{
+		node.addEventListener('click', async ()=>{
 			window.location.href = `country.html?name=${node.innerHTML}`;
 		});
 	});
-
 }
 
 // run functions on page load
