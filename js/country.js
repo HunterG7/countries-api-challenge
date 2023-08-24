@@ -4,7 +4,7 @@
 
 const backBtn = document.querySelector('.back-btn');
 const URL = document.URL;
-const currentCountry = URL.substring(65).replaceAll('%20', ' ');
+let currentCountry = URL.substring(65).replaceAll('%20', ' ');
 const countryCard = document.querySelector('.single-country-card');
 
 // go back to home page
@@ -15,11 +15,49 @@ backBtn.addEventListener('click', ()=>{
 // get country info from api
 const getCountryInfo = async (country) => {
 	try {
-		const response = await fetch(`https://restcountries.com/v3.1/name/${country}?fullText=true`);
+		const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
 		const data = await response.json();
 		return data;
 	} catch (error) {
 		console.log(error);
+	}
+}
+
+// get country currency
+const getCurrency = (countryData) => {
+	let currenciesObject = countryData.currencies;
+	let targetCurrency = Object.keys(currenciesObject)[0];
+	let currencyName = currenciesObject[targetCurrency].name;
+	return currencyName;
+}
+
+// get country's languages
+const getLanguage = (countryData) => {
+	let languagesArray = Object.values(countryData.languages);
+	let languages = '';
+	for (let i = 0; i < languagesArray.length; i++){
+		if (i === languagesArray.length - 1){
+			languages += languagesArray[i];
+		} else {
+			languages += languagesArray[i] + ', ';
+		}
+	}
+	return languages;
+}
+
+// get border countries
+const getBorderCountries = (countryData) => {
+	if (countryData.borders === undefined){
+		return '---';
+	} else {
+		let borderCountriesArr = (countryData.borders);
+		let borderCountriesFormatted = [];
+		borderCountriesArr.forEach((country) => {
+			country = '<div class="border-country column shrink justify-center">' + country + '</div>';
+			borderCountriesFormatted.push(country);
+		});
+		let borderCountries = borderCountriesFormatted.join(' ');
+		return borderCountries;
 	}
 }
 
@@ -30,8 +68,9 @@ const renderCountryPage = async () => {
 	countryData = countryData[0];
 	console.log(countryData);
 
-	let currencies = countryData.currencies;
-	console.log(currencies);
+	let currencyName = getCurrency(countryData);
+	let languages = getLanguage(countryData);
+	let borderCountries = getBorderCountries(countryData);
 
 	let HTML = document.createElement('div');
 	HTML.classList.add('row', 'no-padding', 'gap-5');
@@ -56,16 +95,28 @@ const renderCountryPage = async () => {
 				</div>
 				<div class="column gap-10">
 					<p>Top Level Domain: <span>${countryData.tld[0]}</span></p>
-					<p>Currencies: <span>${countryData.currencies}</span></p>
-					<p>Languages: <span>${countryData.languages}</span></p>
+					<p>Currencies: <span>${currencyName}</span></p>
+					<p>Languages: <span>${languages}</span></p>
 				</div>
 			</div>
 			<div class="row no-padding country-info">
-				<p>Border Countries:</p>
+				<p>Border Countries: <span>${borderCountries}</span></p>
 			</div>
 		</div>`;
 
 	countryCard.append(HTML);
+	borderCountryFunctionality();
+}
+
+// redirect to specific country view when border country is clicked
+const borderCountryFunctionality = () => {
+	let borderCountriesNodes = document.querySelectorAll('.border-country');
+	borderCountriesNodes.forEach((node)=>{
+		node.addEventListener('click', ()=>{
+			window.location.href = `country.html?name=${node.innerHTML}`;
+		});
+	});
+
 }
 
 // run functions on page load
