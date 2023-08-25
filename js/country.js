@@ -34,6 +34,13 @@ const getCountryInfo = async (country) => {
 	}
 }
 
+// get country's native name
+const getNativeName = (countryData) => {
+	let nativeNameObj = countryData.name.nativeName;
+	let nativeName = Object.values(nativeNameObj)[0].common;
+	return nativeName;
+}
+
 // get country currency
 const getCurrency = (countryData) => {
 	let currenciesObject = countryData.currencies;
@@ -77,7 +84,9 @@ const renderCountryPage = async () => {
 	countryCard.innerHTML = '';
 	let countryData = await getCountryInfo(currentCountry);
 	countryData = countryData[0];
+	console.log(countryData);
 
+	let nativeName = getNativeName(countryData);
 	let currencyName = getCurrency(countryData);
 	let languages = getLanguage(countryData);
 	let borderCountries = getBorderCountries(countryData);
@@ -86,7 +95,7 @@ const renderCountryPage = async () => {
 	HTML.classList.add('row', 'no-padding', 'gap-5');
 	HTML.innerHTML = `
 		<!-- country flag -->
-		<div class="column">
+		<div class="column flag-wrapper">
 			<img class="flag" src="${countryData.flags.png}" alt="${countryData.name.common} flag">
 		</div>
 
@@ -97,7 +106,7 @@ const renderCountryPage = async () => {
 			</div>
 			<div class="row no-padding country-info">
 				<div class="column gap-10">
-					<p>Native Name: <span></span></p>
+					<p>Native Name: <span>${nativeName}</span></p>
 					<p>Population <span>${countryData.population}</span></p>
 					<p>Region: <span>${countryData.region}</span></p>
 					<p>Sub Region: <span>${countryData.subregion}</span></p>
@@ -109,7 +118,7 @@ const renderCountryPage = async () => {
 					<p>Languages: <span>${languages}</span></p>
 				</div>
 			</div>
-			<div class="row no-padding country-info">
+			<div class="row align-center no-padding border-countries">
 				<p>Border Countries: <span>${borderCountries}</span></p>
 			</div>
 		</div>`;

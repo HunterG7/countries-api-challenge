@@ -143,15 +143,20 @@ main.container {
     font-weight: 1000;
     font-size: 1.25rem;
 }
-.country-info p {
+.country-info p, .border-countries {
     font-weight: 1000;
 }
 .country-info p span {
     font-weight: normal;
 }
 .flag {
+    width: 41.8rem;
+    height: 22rem;
     object-fit: cover;
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+.border-countries {
+    flex-wrap: wrap;
 }
 .border-country {
     padding: 5px 10px;
@@ -160,7 +165,6 @@ main.container {
     cursor: pointer;
 }
 .border-country:hover {
-    transform: scale(1.05);
     transition: all .3s ease-in-out;
     background-color: var(--Very-dark-blue-lm);
     color: var(--White);
