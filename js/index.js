@@ -27,11 +27,18 @@
 		}
 	}
 
+	// format population with commas
+	const formatPopulation = (pop) => {
+		return pop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	}
+
 	// render country card for each country
 	const renderCountry = (country) => {
 		if (country.name.common.length > 35) {
 			country.name.common = country.name.common.slice(0, 35) + '...';
 		}
+		let population = formatPopulation(country.population);
+
 		countriesParent.innerHTML += `
 			<div class="column no-gap country-card">
 				<div class="row no-padding">
@@ -40,7 +47,7 @@
 				<div class="row card-info">
 					<div class="column">
 						<h3>${country.name.common}</h3>
-						<p>Population: <span>${country.population}</span></p>
+						<p>Population: <span>${population}</span></p>
 						<p>Region: <span>${country.continents[0]}</span></p>
 						<p>Capital: <span>${country.capital}</span></p>
 					</div>

@@ -1,4 +1,3 @@
-
 :root {
     --dark-blue: hsl(209, 23%, 22%); /* (Dark Mode Elements) */
     --Very-dark-blue-dm: hsl(207, 26%, 17%); /* (Dark Mode Background) */
@@ -43,6 +42,11 @@ main.container {
     background-color: var(--Very-light-gray);
     padding: 3rem 0;
 }
+
+.mode-switch {
+    cursor: pointer;
+}
+
 .search-row {
     padding: 0 0 2rem 0;
 }
@@ -117,8 +121,14 @@ main.container {
 .country-card p span {
     font-weight: 400;
 }
+
+/*/////////////////////*/
+/* Single Country Page */
+/*/////////////////////*/
 .back-btn {
     display: flex;
+    gap: 10px;
+    align-items: center;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, .2);
     padding: .5rem 2rem;
@@ -132,10 +142,6 @@ main.container {
     width: 20px;
     height: 20px;
 }
-
-/*/////////////////////*/
-/* Single Country Page */
-/*/////////////////////*/
 .gap-5 {
     gap: 5rem;
 }
@@ -146,7 +152,7 @@ main.container {
 .country-info p, .border-countries {
     font-weight: 1000;
 }
-.country-info p span {
+.country-info p span, .border-countries p span {
     font-weight: normal;
 }
 .flag {

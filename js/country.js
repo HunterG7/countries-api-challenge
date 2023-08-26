@@ -79,6 +79,11 @@ const getBorderCountries = (countryData) => {
 	}
 }
 
+// format population with commas
+const formatPopulation = (pop) => {
+	return pop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 // render country page
 const renderCountryPage = async () => {
 	countryCard.innerHTML = '';
@@ -90,6 +95,7 @@ const renderCountryPage = async () => {
 	let currencyName = getCurrency(countryData);
 	let languages = getLanguage(countryData);
 	let borderCountries = getBorderCountries(countryData);
+	let population = formatPopulation(countryData.population);
 
 	let HTML = document.createElement('div');
 	HTML.classList.add('row', 'no-padding', 'gap-5');
@@ -107,7 +113,7 @@ const renderCountryPage = async () => {
 			<div class="row no-padding country-info">
 				<div class="column gap-10">
 					<p>Native Name: <span>${nativeName}</span></p>
-					<p>Population <span>${countryData.population}</span></p>
+					<p>Population <span>${population}</span></p>
 					<p>Region: <span>${countryData.region}</span></p>
 					<p>Sub Region: <span>${countryData.subregion}</span></p>
 					<p>Capital: <span>${countryData.capital[0]}</span></p>
