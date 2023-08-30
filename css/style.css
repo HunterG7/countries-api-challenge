@@ -42,11 +42,9 @@ main.container {
     background-color: var(--Very-light-gray);
     padding: 3rem 0;
 }
-
 .mode-switch {
     cursor: pointer;
 }
-
 .search-row {
     padding: 0 0 2rem 0;
 }
@@ -65,6 +63,32 @@ main.container {
 #search-bar {
     width: 150%;
 }
+.dropdown {
+    position: relative;
+}
+.filter-by-region, .options {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1rem;
+}
+.filter-by-region {
+    cursor: pointer;
+}
+.options {
+    position: absolute;
+    top: 4rem;
+    z-index: 99;
+    background-color: var(--White);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.hide {
+    display: none;
+}
+
+
 #region {
     border: none;
     outline: none;
@@ -121,6 +145,8 @@ main.container {
 .country-card p span {
     font-weight: 400;
 }
+/* dropdown menu */
+
 
 /*/////////////////////*/
 /* Single Country Page */

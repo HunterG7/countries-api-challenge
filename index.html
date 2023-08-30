@@ -36,25 +36,41 @@
     </header>
 
     <!-- search/filter and country cards -->
-    <main class="container justify-center">
+    <main class="container">
         <!-- search and filter -->
-        <div class="row align-center justify-space-between shrink search-row">
+        <div class="row justify-space-between shrink search-row">
             <div class="column shrink">
-                <div id="search-bar" class="row no-padding">
-                    <img src="images/noun-magnifying-glass-4130411.svg" alt="magnifying glass">
+                <div id="search-bar" class="row align-center no-padding">
+                    <ion-icon name="search-outline"></ion-icon>
                     <input id="search" type="text" placeholder="Search for a country...">
                 </div>
             </div>
-            <div class="column shrink">
-                <select name="region" id="region">
-                    <option value="all">All</option>
-                    <option value="africa">Africa</option>
-                    <option value="americas">Americas</option>
-                    <option value="asia">Asia</option>
-                    <option value="europe">Europe</option>
-                    <option value="oceania">Oceania</option>
-                </select>
+            <div class="column shrink gap-10 dropdown">
+                <div class="filter-by-region row align-center">
+                    Filter by Region
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </div>
+                <div class="options hide">
+                    <div class="option">All</div>
+                    <div class="option">Africa</div>
+                    <div class="option">Americas</div>
+                    <div class="option">Asia</div>
+                    <div class="option">Europe</div>
+                    <div class="option">Oceania</div>
+                </div>
             </div>
+
+
+<!-- ORIGINAL FILTER BY REGION -->
+<!--                <select name="region" id="region">-->
+<!--                    <option value="all">All</option>-->
+<!--                    <option value="africa">Africa</option>-->
+<!--                    <option value="americas">Americas</option>-->
+<!--                    <option value="asia">Asia</option>-->
+<!--                    <option value="europe">Europe</option>-->
+<!--                    <option value="oceania">Oceania</option>-->
+<!--                </select>-->
+<!--            </div>-->
         </div>
 
         <!-- country cards -->
@@ -63,5 +79,7 @@
 </div>
 
 <script type="module" src="js/index.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

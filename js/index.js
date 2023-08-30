@@ -5,7 +5,7 @@
 
 	const countriesParent = document.querySelector('.card-row');
 	const searchBar = document.querySelector('#search');
-	const filterByRegion = document.querySelector('#region');
+	// const filterByRegion = document.querySelector('#region');
 
 	// get countries data from API
 	const testAPI = async () => {
@@ -67,25 +67,39 @@
 		}
 	});
 
+	// filter by region logic
+	const dropdown = document.querySelector('.dropdown');
+	const filter = document.querySelector('.filter-by-region');
+	const filterOptions = document.querySelector('.options');
 
-	// filter by region
-	filterByRegion.addEventListener('change', async () => {
-		let countries = await testAPI();
-		let region = filterByRegion.value;
-		if (region === 'all') {
-			await renderDefaultCountries();
-			return;
-		}
-		if (region === 'americas') {
-			region = 'america';
-		}
-		countriesParent.innerHTML = '';
-		for (let i = 0; i < countries.length; i++) {
-			if (countries[i].continents[0].toLowerCase().includes(region.toLowerCase())) {
-				renderCountry(countries[i]);
-			}
-		}
+	document.addEventListener('DOMContentLoaded', () => {
+		filter.addEventListener('click', () => {
+			filterOptions.classList.toggle('hide');
+		});
+
+		dropdown.addEventListener('focusout', () => {
+			filterOptions.classList.toggle('hide');
+		});
 	});
+
+	// // filter by region
+	// filterByRegion.addEventListener('change', async () => {
+	// 	let countries = await testAPI();
+	// 	let region = filterByRegion.value;
+	// 	if (region === 'all') {
+	// 		await renderDefaultCountries();
+	// 		return;
+	// 	}
+	// 	if (region === 'americas') {
+	// 		region = 'america';
+	// 	}
+	// 	countriesParent.innerHTML = '';
+	// 	for (let i = 0; i < countries.length; i++) {
+	// 		if (countries[i].continents[0].toLowerCase().includes(region.toLowerCase())) {
+	// 			renderCountry(countries[i]);
+	// 		}
+	// 	}
+	// });
 
 	// redirect to country when country card is clicked
 	countriesParent.addEventListener('click', async (e) => {
