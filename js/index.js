@@ -68,43 +68,71 @@
 	});
 
 	// filter by region logic
-	const dropdown = document.querySelector('.dropdown');
 	const filter = document.querySelector('.filter-by-region');
-	const filterOptions = document.querySelector('.options');
+	const filterOptionsParent = document.querySelector('.options');
+	const filterOptions = document.querySelectorAll('.option');
 
 	document.addEventListener('DOMContentLoaded', () => {
 		filter.addEventListener('click', () => {
-			filterOptions.classList.toggle('hide');
+			filterOptionsParent.classList.toggle('hide');
 		});
 
-		dropdown.addEventListener('focusout', () => {
-			filterOptions.classList.toggle('hide');
+		filterOptions.forEach((option) => {
+			option.addEventListener('click', async ()=> {
+				filterOptionsParent.classList.toggle('hide');
+
+				let countries = await testAPI();
+				let region = option.innerText.toLowerCase();
+				if (region === 'all') {
+					await renderDefaultCountries();
+					return;
+				}
+				if (region === 'americas') {
+					region = 'america';
+				}
+				countriesParent.innerHTML = '';
+				for (let i = 0; i < countries.length; i++) {
+					if (countries[i].continents[0].toLowerCase().includes(region)) {
+						renderCountry(countries[i]);
+					}
+				}
+			});
 		});
 	});
-
-	// // filter by region
-	// filterByRegion.addEventListener('change', async () => {
-	// 	let countries = await testAPI();
-	// 	let region = filterByRegion.value;
-	// 	if (region === 'all') {
-	// 		await renderDefaultCountries();
-	// 		return;
-	// 	}
-	// 	if (region === 'americas') {
-	// 		region = 'america';
-	// 	}
-	// 	countriesParent.innerHTML = '';
-	// 	for (let i = 0; i < countries.length; i++) {
-	// 		if (countries[i].continents[0].toLowerCase().includes(region.toLowerCase())) {
-	// 			renderCountry(countries[i]);
-	// 		}
-	// 	}
-	// });
 
 	// redirect to country when country card is clicked
 	countriesParent.addEventListener('click', async (e) => {
 		let countryName = e.target.closest('.country-card').querySelector('h3').textContent;
 		window.location.href = `country.html?name=${countryName}`;
+	});
+
+	// mode switch
+	let mode = document.querySelector('.mode-switch');
+
+	mode.addEventListener('click', ()=>{
+		let textElement = mode.querySelector('p');
+		let icon = mode.querySelector('ion-icon');
+		const root = document.documentElement;
+
+		if (textElement.innerText === 'Dark Mode') {
+			textElement.innerText = 'Light Mode';
+			icon.name = 'moon';
+			icon.style.color = '#FFF';
+
+			root.style.setProperty('--element','hsl(209, 23%, 22%)');
+			root.style.setProperty('--background','hsl(207, 26%, 17%)');
+			root.style.setProperty('--text','hsl(0, 0%, 100%)');
+			root.style.setProperty('--input','hsl(209, 23%, 22%)');
+		} else {
+			textElement.innerText = 'Dark Mode';
+			icon.name = 'moon-outline';
+			icon.style.color = '#000';
+
+			root.style.setProperty('--element','hsl(0, 0%, 100%)');
+			root.style.setProperty('--background','hsl(0, 0%, 98%)');
+			root.style.setProperty('--text','hsl(200, 15%, 8%)');
+			root.style.setProperty('--input','hsl(0, 0%, 52%)');
+		}
 	});
 
 	// execute default countries on page load
