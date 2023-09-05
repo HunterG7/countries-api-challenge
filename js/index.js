@@ -1,13 +1,8 @@
-//////////////////////
-// INDEX PAGE LOGIC //
-//////////////////////
 import {modeSwitch} from "./main.js";
 
 (async() => {
-
 	const countriesParent = document.querySelector('.card-row');
 	const searchBar = document.querySelector('#search');
-	// const filterByRegion = document.querySelector('#region');
 
 	// get countries data from API
 	const testAPI = async () => {

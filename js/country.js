@@ -1,12 +1,8 @@
-////////////////////////
-// Country Page Logic //
-////////////////////////
-
 import {modeSwitch} from "./main.js";
 
 const backBtn = document.querySelector('.back-btn');
 const URL = document.URL;
-let currentCountry = URL.substring(65).replaceAll('%20', ' ');
+let currentCountry = URL.substring(69).replaceAll('%20', ' ');
 const countryCard = document.querySelector('.single-country-card');
 
 // go back to home page
@@ -91,7 +87,6 @@ const renderCountryPage = async () => {
 	countryCard.innerHTML = '';
 	let countryData = await getCountryInfo(currentCountry);
 	countryData = countryData[0];
-	console.log(countryData);
 
 	let nativeName = getNativeName(countryData);
 	let currencyName = getCurrency(countryData);
