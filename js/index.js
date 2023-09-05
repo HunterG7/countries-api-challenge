@@ -1,6 +1,8 @@
 //////////////////////
 // INDEX PAGE LOGIC //
 //////////////////////
+import {modeSwitch} from "./main.js";
+
 (async() => {
 
 	const countriesParent = document.querySelector('.card-row');
@@ -106,35 +108,8 @@
 		window.location.href = `country.html?name=${countryName}`;
 	});
 
-	// mode switch
-	let mode = document.querySelector('.mode-switch');
-
-	mode.addEventListener('click', ()=>{
-		let textElement = mode.querySelector('p');
-		let icon = mode.querySelector('ion-icon');
-		const root = document.documentElement;
-
-		if (textElement.innerText === 'Dark Mode') {
-			textElement.innerText = 'Light Mode';
-			icon.name = 'moon';
-			icon.style.color = '#FFF';
-
-			root.style.setProperty('--element','hsl(209, 23%, 22%)');
-			root.style.setProperty('--background','hsl(207, 26%, 17%)');
-			root.style.setProperty('--text','hsl(0, 0%, 100%)');
-			root.style.setProperty('--input','hsl(209, 23%, 22%)');
-		} else {
-			textElement.innerText = 'Dark Mode';
-			icon.name = 'moon-outline';
-			icon.style.color = '#000';
-
-			root.style.setProperty('--element','hsl(0, 0%, 100%)');
-			root.style.setProperty('--background','hsl(0, 0%, 98%)');
-			root.style.setProperty('--text','hsl(200, 15%, 8%)');
-			root.style.setProperty('--input','hsl(0, 0%, 52%)');
-		}
-	});
-
 	// execute default countries on page load
 	await renderDefaultCountries();
+	// function to allow dark mode and light mode switch to work
+	modeSwitch();
 })();
